@@ -1,0 +1,110 @@
+body {
+    display: flex;
+    height: 95vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white;
+}
+.outer-container {
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fffff5;
+}
+.calculator-container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    min-height: 400px;
+    max-height: 600px;
+    min-width: 425px;
+    max-width: 425px;
+
+}
+.number-container {
+    display: flex;
+    box-sizing: border-box;
+    border: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: 1;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    min-height: 400px;
+    max-height: 600px;
+    min-width: 425px;
+    max-width: 425px;
+    margin-top: 15px;
+}
+
+.display-container {
+    box-sizing: border-box;
+    background-color: white;
+    min-width: 395px;
+    max-width: 395px;
+    margin-left: 15px;
+    height: 100px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    font-size: 40px;
+    border-radius: 5px;
+}
+.scroll-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    max-width: 390px;
+    padding-left: 15px;
+    padding-right: 15px; 
+}
+.numbers {
+    padding-left: 15px;
+    padding-right: 15px;  
+    overflow-x: scroll;
+}
+.running-formula {
+    font-size: 25px;
+    overflow-x: scroll;
+    color: lightslategray;
+}
+.button, .operator, .equal{
+    background-color: white;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+    padding: 40px;
+    margin: 5px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    user-select: none;
+}
+div.equal {
+    background-color: #E9B384;
+}
+div.posneg {
+    background-color: white;
+}
+.operator, div.percentconvert {
+    background-color: #A1CCD1 ;
+}
+#clear, #backspace {
+    background-color: #7C9D96;
+}
+.button:active {
+    transform: translateY(.5px);
+    box-shadow: inset 0px 5px 5px 2px rgba(0, 0, 0, 0.25);
+}
+.operator:active {
+    transform: translateY(.5px);
+    box-shadow: inset 0px 5px 5px 2px rgba(0, 0, 0, 0.25);
+}
