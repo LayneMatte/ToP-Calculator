@@ -63,11 +63,15 @@ function buttonPress (event) {
             break
         case '.':
             console.log(Number.isInteger(parseFloat(display.textContent)))
-            if (event.code === '.' && Number.isInteger(tempNum) === true) {return display.textContent = `${tempNum}.`}
-            else if (event.code === '.' && Number.isInteger(tempNum) === false) {return }
+            if (event.code === '.' && Number.isInteger(tempNum) === true) {
+                return display.textContent = `${tempNum}.`
+            } else if (event.code === '.' && Number.isInteger(tempNum) === false) { return }
             break
         case 'Backspace':
-            if (event.code === 'Backspace' && display.textContent !== '') {return backspace(), tempNum = 0}
+            if (event.code === 'Backspace' && display.textContent !== '') {
+                tempNum = 0
+                return backspace() 
+            }
                 else if (event.code === 'Backspace' && display.textContent === '') {return tempNum = 0}
             break
         case '/':
@@ -98,11 +102,13 @@ function backspace () {
     // remove last number
     displayNumbers.pop()
     // turn back into a string
-   let newDisplayNumbers = displayNumbers.join('')
+    let newDisplayNumbers = displayNumbers.join('')
     // turn into float
-   parsed = parseFloat(newDisplayNumbers)
+    parsed = parseFloat(newDisplayNumbers)
     // checks to make sure a number is in display 
-   if (Number.isNaN(parsed) === true) {return display.textContent = ''}
+    if (Number.isNaN(parsed) === true) {
+        return display.textContent = ''
+    }
     display.textContent = parsed
 }
 
@@ -112,22 +118,37 @@ function updateDisplay (e) {
     let num = e.target.id;
     // tempNum must update twice to avoid issues with floating point placement
     tempNum = parseFloat(display.textContent)
-        // erases display text 
-        if (num === 'clear') {return display.textContent = '',runningFormula.textContent = '',tempNum = 0, num1 = 0, num2 = 0}
-        // adds backspace function and check to see if a number is present 
-        if (num === 'backspace' && display.textContent !== '') {return backspace(), tempNum = 0}
-            else if (num === 'backspace' && display.textContent === '') {return tempNum = 0}
-        // adds period to create floating point and prevents more than 1 from being inputted 
-        if (num === '.' && Number.isInteger(tempNum) === true) {return display.textContent = `${tempNum}.`}
-            else if (num === '.' && Number.isInteger(tempNum) === false) {return }
-        // adds percent funcitonality and checks if display is empty to not apply 
-        if (num === '%' && display.textContent !== '') {return display.textContent = display.textContent/100}
-            else if (num === '%' && display.textContent === '') {return}
-        // positive/negative functionality and checks if display is empty to not apply 
-        if (num === '+/-' && display.textContent !== '') {return display.textContent = display.textContent * -1}
-            else if (num === '+/-' && display.textContent === '') {return}
-        // purely to keep equal sign from being input into display field 
-        if (num === '=') {return}
+    // erases display text 
+    if (num === 'clear') {
+        display.textContent = ''
+        runningFormula.textContent = ''
+        tempNum = 0 
+        num1 = 0 
+        num2 = 0
+        return 
+    }
+    // adds backspace function and check to see if a number is present 
+    if (num === 'backspace' && display.textContent !== '') {
+        return backspace(), tempNum = 0
+    }  else if (num === 'backspace' && display.textContent === '') {
+        tempNum = 0
+        return 
+    }
+    // adds period to create floating point and prevents more than 1 from being inputted 
+    if (num === '.' && Number.isInteger(tempNum) === true) {
+        display.textContent = `${tempNum}.`
+        return 
+    }  else if (num === '.' && Number.isInteger(tempNum) === false) {return }
+    // adds percent funcitonality and checks if display is empty to not apply 
+    if (num === '%' && display.textContent !== '') {
+        display.textContent = display.textContent/100
+        return
+    }  else if (num === '%' && display.textContent === '') {return}
+    // positive/negative functionality and checks if display is empty to not apply 
+    if (num === '+/-' && display.textContent !== '') {return display.textContent = display.textContent * -1}
+        else if (num === '+/-' && display.textContent === '') {return}
+    // purely to keep equal sign from being input into display field 
+    if (num === '=') {return}
     // concatenates numbers/periods 
     display.textContent += num
     // parses display text into floating point to be used in operations 
@@ -178,6 +199,12 @@ function operate (operator) {
             display.textContent = solution;
             break;
         case '/':
+            if (num2 === 0) {
+                alert('Cannot Divide By 0')
+                display.textContent = ''
+                runningFormula.textContent = ''
+                return
+            }
             solution = num1 / num2
             display.textContent = solution;
             break;
